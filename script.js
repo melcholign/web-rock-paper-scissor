@@ -15,7 +15,7 @@ function getComputerSelection() {
 
 function getPlayerSelection() {
 
-    let selection, status;
+    let selection;
 
     while (true) {
 
@@ -37,7 +37,7 @@ function getPlayerSelection() {
             return selection;
         }
 
-        alert('Invalid choice. Try again.');
+        console.warn('Invalid choice. Try again.');
     }
 }
 
@@ -47,45 +47,76 @@ function playRound(playerSelection, computerSelection) {
 
         if (playerSelection === null) {
 
-            return 'Game is Cancelled.';
+            return 'CANCELLED';
         }
 
         if (playerSelection === 'rock' && computerSelection === 'scissor') {
 
-            return 'You Win! Rock beats Scissor.';
+            return 'WIN -- ROCK beats SCISSOR';
         }
 
         if (playerSelection === 'rock' && computerSelection === 'paper') {
 
-            return 'You Lose! Paper beats Rock.';
+            return 'LOSE -- PAPER beats ROCK';
         }
 
         if (playerSelection === 'scissor' && computerSelection === 'paper') {
 
-            return 'You Win! Scissor beats Paper.';
+            return 'WIN -- SCISSOR beats PAPER';
         }
 
         if (playerSelection === 'scissor' && computerSelection === 'rock') {
 
-            return 'You Lose! Rock beats Scissor.';
+            return 'LOSE -- ROCK beats SCISSOR';
         }
 
         if (playerSelection === 'paper' && computerSelection === 'rock') {
 
-            return 'You Win! Paper beats Rock.';
-
+            return 'WIN -- PAPER beats ROCK.';
         }
 
         if (playerSelection === 'paper' && computerSelection === 'scissor') {
 
-            return 'You Lose! Scissor beats Paper.';
+            return 'LOSE -- SCISSOR beats PAPER.';
         }
 
-        alert('It\'s a tie. Make a choice to play again or cancel.');
+        console.info('The round is a tie. Make a choice to play again or cancel.');
 
         computerSelection = getComputerSelection();
         playerSelection = getPlayerSelection();
     }
 }
 
-console.log(playRound(getPlayerSelection(), getComputerSelection()));
+function game(rounds = 5) {
+
+    let playerScore = 0
+        , computerScore = 0
+        , roundResult;
+
+    for (let i = 1; i <= rounds; ++i) {
+
+        roundResult = playRound(getPlayerSelection(), getComputerSelection());
+        if (roundResult === 'CANCELLED') {
+            return 'The game is cancelled.';
+        } 
+
+        console.info(roundResult);
+        
+        if (roundResult[0] === 'W') {
+            ++playerScore;
+        } else {
+            ++computerScore;
+        }
+
+        if(i === rounds && playerScore === computerScore) {
+            console.log('Tiebreaker round');
+            --i;
+        }
+    }
+
+    return (playerScore > computerScore) ? 
+        `Player won by ${playerScore - computerScore} points`:
+        `Computer won by ${computerScore - playerScore} points`;
+}
+
+console.log(game());
