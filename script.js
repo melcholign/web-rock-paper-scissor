@@ -1,4 +1,4 @@
-function getComputerChoice() {
+function getComputerSelection() {
 
     switch (Math.floor(Math.random() * 3)) {
 
@@ -13,7 +13,7 @@ function getComputerChoice() {
     }
 }
 
-function playerSelection() {
+function getPlayerSelection() {
 
     let selection, status;
 
@@ -40,3 +40,52 @@ function playerSelection() {
         alert('Invalid choice. Try again.');
     }
 }
+
+function playRound(playerSelection, computerSelection) {
+
+    while (true) {
+
+        if (playerSelection === null) {
+
+            return 'Game is Cancelled.';
+        }
+
+        if (playerSelection === 'rock' && computerSelection === 'scissor') {
+
+            return 'You Win! Rock beats Scissor.';
+        }
+
+        if (playerSelection === 'rock' && computerSelection === 'paper') {
+
+            return 'You Lose! Paper beats Rock.';
+        }
+
+        if (playerSelection === 'scissor' && computerSelection === 'paper') {
+
+            return 'You Win! Scissor beats Paper.';
+        }
+
+        if (playerSelection === 'scissor' && computerSelection === 'rock') {
+
+            return 'You Lose! Rock beats Scissor.';
+        }
+
+        if (playerSelection === 'paper' && computerSelection === 'rock') {
+
+            return 'You Win! Paper beats Rock.';
+
+        }
+
+        if (playerSelection === 'paper' && computerSelection === 'scissor') {
+
+            return 'You Lose! Scissor beats Paper.';
+        }
+
+        alert('It\'s a tie. Make a choice to play again or cancel.');
+
+        computerSelection = getComputerSelection();
+        playerSelection = getPlayerSelection();
+    }
+}
+
+console.log(playRound(getPlayerSelection(), getComputerSelection()));
