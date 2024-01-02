@@ -3,13 +3,13 @@ function getComputerSelection() {
     switch (Math.floor(Math.random() * 3)) {
 
         case 0:
-            return 'rock';
+            return 'Rock';
 
         case 1:
-            return 'paper';
+            return 'Paper';
 
         case 2:
-            return 'scissor';
+            return 'Scissor';
     }
 }
 
@@ -19,7 +19,7 @@ function getPlayerSelection() {
 
     while (true) {
 
-        selection = prompt('Do you choose rock, paper, or scissor?');
+        selection = prompt('Do you choose Rock, Paper, or Scissor?');
 
         if (selection === null) {
             return null;
@@ -31,9 +31,9 @@ function getPlayerSelection() {
             return null;
         }
 
-        selection = selection.toLowerCase();
+        selection = selection[0].toUpperCase() + selection.substring(1).toLowerCase();
 
-        if (selection === 'rock' || selection === 'paper' || selection === 'scissor') {
+        if (selection === 'Rock' || selection === 'Paper' || selection === 'Scissor') {
             return selection;
         }
 
@@ -43,47 +43,38 @@ function getPlayerSelection() {
 
 function playRound(playerSelection, computerSelection) {
 
-    while (true) {
-
         if (playerSelection === null) {
-
-            return 'CANCELLED';
+            return `CANCEL. Round is forfeited`;
         }
 
-        if (playerSelection === 'rock' && computerSelection === 'scissor') {
-
-            return 'WIN -- ROCK beats SCISSOR';
+        if (playerSelection === computerSelection) {
+            return `TIE. ${playerSelection} cannot beat ${computerSelection}`;
         }
 
-        if (playerSelection === 'rock' && computerSelection === 'paper') {
+        if (getStrongerSelection(playerSelection) === computerSelection) {
 
-            return 'LOSE -- PAPER beats ROCK';
+            return `LOSE. ${computerSelection} beats ${playerSelection}`;
         }
 
-        if (playerSelection === 'scissor' && computerSelection === 'paper') {
+        return `WIN. ${playerSelection} beats ${computerSelection}`;
+    
+}
 
-            return 'WIN -- SCISSOR beats PAPER';
-        }
+function getStrongerSelection(selection) {
 
-        if (playerSelection === 'scissor' && computerSelection === 'rock') {
+    switch (selection) {
 
-            return 'LOSE -- ROCK beats SCISSOR';
-        }
+        case 'Rock':
+            return 'Paper';
 
-        if (playerSelection === 'paper' && computerSelection === 'rock') {
+        case 'Paper':
+            return 'Scissor';
 
-            return 'WIN -- PAPER beats ROCK.';
-        }
+        case 'Scissor':
+            return 'Rock';
 
-        if (playerSelection === 'paper' && computerSelection === 'scissor') {
-
-            return 'LOSE -- SCISSOR beats PAPER.';
-        }
-
-        console.info('The round is a tie. Make a choice to play again or cancel.');
-
-        computerSelection = getComputerSelection();
-        playerSelection = getPlayerSelection();
+        default:
+            return undefined;
     }
 }
 
