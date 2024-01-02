@@ -43,21 +43,21 @@ function getPlayerSelection() {
 
 function playRound(playerSelection, computerSelection) {
 
-        if (playerSelection === null) {
-            return `CANCEL. Round is forfeited`;
-        }
+    if (playerSelection === null) {
+        return `CANCEL. Round is forfeited`;
+    }
 
-        if (playerSelection === computerSelection) {
-            return `TIE. ${playerSelection} cannot beat ${computerSelection}`;
-        }
+    if (playerSelection === computerSelection) {
+        return `TIE. ${playerSelection} cannot beat ${computerSelection}`;
+    }
 
-        if (getStrongerSelection(playerSelection) === computerSelection) {
+    if (getStrongerSelection(playerSelection) === computerSelection) {
 
-            return `LOSE. ${computerSelection} beats ${playerSelection}`;
-        }
+        return `LOSE. ${computerSelection} beats ${playerSelection}`;
+    }
 
-        return `WIN. ${playerSelection} beats ${computerSelection}`;
-    
+    return `WIN. ${playerSelection} beats ${computerSelection}`;
+
 }
 
 function getStrongerSelection(selection) {
@@ -82,31 +82,46 @@ function game(rounds = 5) {
 
     let playerScore = 0
         , computerScore = 0
-        , roundResult;
+        , roundOutcome;
 
     for (let i = 1; i <= rounds; ++i) {
 
-        roundResult = playRound(getPlayerSelection(), getComputerSelection());
-        if (roundResult === 'CANCELLED') {
-            return 'The game is cancelled.';
-        } 
+        console.log(`Round ${i}:`);
+        roundOutcome = playRound(getPlayerSelection(), getComputerSelection());
+        console.log(roundOutcome);
 
-        console.info(roundResult);
-        
-        if (roundResult[0] === 'W') {
-            ++playerScore;
-        } else {
-            ++computerScore;
+        switch (roundOutcome.substring(0, roundOutcome.indexOf('.'))) {
+
+            case 'CANCEL':
+                return 'Game is exited before finish';  // early return
+
+            case 'TIE':
+                console.log('Restarting the round...');
+                --i;
+                continue;   // restart round no. i
+
+            case 'LOSE':
+                ++computerScore;
+                break;
+
+            case 'WIN':
+                ++playerScore;
+                break;
+
+            default:
+                return undefined;
         }
 
-        if(i === rounds && playerScore === computerScore) {
-            console.log('Tiebreaker round');
+        console.log(`Player: ${playerScore} vs Computer: ${computerScore}`);
+
+        if (i === rounds && playerScore === computerScore) {
+            console.log("Tiebreaker Round!");
             --i;
         }
     }
 
-    return (playerScore > computerScore) ? 
-        `Player won by ${playerScore - computerScore} points`:
+    return (playerScore > computerScore) ?
+        `Player won by ${playerScore - computerScore} points` :
         `Computer won by ${computerScore - playerScore} points`;
 }
 
