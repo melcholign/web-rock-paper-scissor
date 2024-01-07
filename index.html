@@ -1,25 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock x Paper x Scissor</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer></script>
 </head>
+
 <body>
     <header>
         ROCK x PAPER x SCISSOR
     </header>
-    
-    <main>
-        
+
+    <main class="row-center">
+        <div id="player" class="contestant">
+            <div class="info row-space-between-center">
+                PLAYER
+                <div class="score row-center">10</div>
+            </div>
+
+            <div class="selection">
+                <img>
+            </div>
+
+            <div class="options row-space-between-center">
+                <div>
+                    <button disabled><img src="./img/rock.png" class="rock"></button>
+                </div>
+
+                <div>
+                    <button disabled><img src="./img/paper.png" class="paper"></button>
+                </div>
+
+                <div>
+                    <button disabled><img src="./img/scissor.png" class="scissor"></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="event">
+
+            <button id="play-button">Play</button>
+
+        </div>
+
+        <div id="computer" class="contestant">
+            <div class="info row-space-between-center">
+                <div class="score row-center">10</div>
+                COMPUTER
+            </div>
+
+            <div class="selection">
+                <img>
+            </div>
+
+            <div class="options">
+            </div>
     </main>
 
     <footer>
-        <a href="https://github.com/melcholign">
+        <a href="https://github.com/melcholign" class="row-center">
             <img src="./img/github-mark.png" width="50px" height="50px">
             @melcholign
         </a>
     </footer>
 </body>
+
 </html>

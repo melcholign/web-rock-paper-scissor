@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     height: 100vh;
     margin: 0px;
@@ -21,12 +25,91 @@ footer {
 }
 
 footer a {
+    width: 100px;
+    margin: 0px auto;
     font-size: 24px;
     font-style: italic;
     text-decoration: none;
     color: black;
+
+    gap: 10px;
+}
+
+.row-center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.row-space-between-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    padding: 10px 0px;
+    gap: 100px;
+    flex-wrap: wrap;
+}
+
+main > div {
+    width: 250px;
+    height: 400px;
+}
+
+.contestant .info {
+    height: 50px;
+    padding: 10px 0px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.contestant .score {
+    width: 50px;
+    height: 30px;
+    border: 2px solid black;
+    font-size: 24px;
+}
+
+.contestant .selection {
+    height: 250px;
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+.contestant .options {
+    height: 100px;
+    padding: 10px 0px;
+}
+
+.contestant button {
+    width: 80px;
+    height: 80px;
+}
+
+.contestant .options img {
+    width: 60px;
+    height: 60px;
+}
+
+#event {
+    align-self: flex-start;
+    height: fit-content;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     gap: 10px;
+}
+
+#event div {
+    text-align: center;
+}
+
+#play-button {
+    padding: 10px 50px;
+    font-size: 24px;
+    font-weight: bold;
 }
