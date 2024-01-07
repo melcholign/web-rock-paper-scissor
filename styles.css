@@ -1,0 +1,32 @@
+body {
+    height: 100vh;
+    margin: 0px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    border-bottom: 2px solid black;
+    padding: 20px 0px;
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
+}
+
+footer {
+    border-top: 2px solid black;
+    padding: 20px 0px;
+}
+
+footer a {
+    font-size: 24px;
+    font-style: italic;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
