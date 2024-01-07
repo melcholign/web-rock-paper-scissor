@@ -1,4 +1,4 @@
-# web-rock-paper-scissors
+# web-rock-paper-scissor
 
 A simple interactive "Rock, Paper, and Scissor" game realized using the rudiments of HTML, CSS, and Javascript.
 
