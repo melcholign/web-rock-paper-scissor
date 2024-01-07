@@ -1,7 +1,6 @@
 const eventsSection = document.querySelector('#events');
 eventsSection.appendChild(makePlayButton(false));
 
-
 let playerSelection, computerSelection;
 let playerScore, computerScore;
 let round;
